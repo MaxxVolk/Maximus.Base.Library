@@ -1,0 +1,13 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Resources>
+    <Assembly ID="Maximus.Base.Library.Console.Assembly" Accessibility="Public" HasNullStream="false"
+              FileName="Maximus.Base.Library.Console.dll"
+              QualifiedName="Maximus.Base.Library.Console, Version=1.0.0.1, Culture=neutral, PublicKeyToken=fd5098a6a3259696"
+              Comment="Base assembly for SCOM Console extensions. Must not be referenced in Module Type projects. Must not be referenced together with base managed workflow library." />
+    <DeployableAssembly ID="Maximus.Base.Library.ManagedWorkflowBase." Accessibility="Public" HasNullStream="false"
+                        FileName="Maximus.Base.Library.ManagedWorkflowBase.dll"
+                        QualifiedName="Maximus.Base.Library.ManagedWorkflowBase, Version=1.0.0.1, Culture=neutral, PublicKeyToken=fd5098a6a3259696"
+                        Comment="Base library for managed workflow. Must not be used in SCOM Console extension projects. Must not be referenced with base console extension library." />
+    
+  </Resources>
+</ManagementPackFragment>

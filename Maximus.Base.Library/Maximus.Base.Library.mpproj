@@ -52,9 +52,26 @@
     </ManagementPackReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.mpx">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ManagementPack.mpx">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Maximus.Base.Library.Console\Maximus.Base.Library.Console.csproj">
+      <Name>Maximus.Base.Library.Console</Name>
+      <Project>{ffd0c0ac-b3f3-48ef-aee8-8a55354c311d}</Project>
+      <Private>True</Private>
+      <PackageToBundle>True</PackageToBundle>
+    </ProjectReference>
+    <ProjectReference Include="..\Maximus.Base.Library.ManagedWorkflowBase\Maximus.Base.Library.ManagedWorkflowBase.csproj">
+      <Name>Maximus.Base.Library.ManagedWorkflowBase</Name>
+      <Project>{5e0c0ba4-f155-493e-95bc-cc00dd323d8c}</Project>
+      <Private>True</Private>
+      <PackageToBundle>True</PackageToBundle>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
 </Project>
