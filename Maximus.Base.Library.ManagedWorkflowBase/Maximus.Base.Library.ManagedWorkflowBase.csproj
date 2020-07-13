@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Maximus.snk" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
