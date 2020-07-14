@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Maximus.Library.Helpers
 {
   public enum EventLoggingLevel { None = 0, Error = 1, Warning = 2, Informational = 3, Verbose = 4 }
- 
+
   public class LoggingHelper
   {
     // internal fields
@@ -19,6 +19,13 @@ namespace Maximus.Library.Helpers
     private Dictionary<Type, int> _eventTypeIDs = new Dictionary<Type, int>();
     private object _eventTypeIDs_lock = new object();
     private const string SoftwareKeyName = "Maximus";
+
+    public LoggingHelper(string eventSourceName, int eventBaseId, EventLoggingLevel eventLoggingLevel)
+    {
+      EventSourceName = eventSourceName;
+      EventBaseID = eventBaseId;
+      EventLoggingLevel = eventLoggingLevel;
+    }
 
     #region Public Properties
     public string EventSourceName
@@ -162,7 +169,7 @@ namespace Maximus.Library.Helpers
         WriteEvent(message, EventLogEntryType.Warning, Src, stringFormatArgs);
 #endif
     }
-    public void logWriteError(string message, object Src, params object[] stringFormatArgs)
+    public void WriteError(string message, object Src, params object[] stringFormatArgs)
     {
 #if DEBUG // using only text file logging in DEBUG release
       logWriteVerbose(message, "", "", 2);
@@ -188,7 +195,7 @@ namespace Maximus.Library.Helpers
         loopException = loopException.InnerException;
         ordernum++;
       } while (loopException != null);
-      logWriteError(exceptionDescription, Src, stringFormatArgs);
+      WriteError(exceptionDescription, Src, stringFormatArgs);
     }
 
     public void WriteException(Exception e, object Src, params object[] stringFormatArgs)
