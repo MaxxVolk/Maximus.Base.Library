@@ -6,7 +6,7 @@
               Comment="Base assembly for SCOM Console extensions. Must not be referenced in Module Type projects. Must not be referenced together with base managed workflow library." />
     <DeployableAssembly ID="Maximus.Base.Library.ManagedWorkflowBase.DeployableAssembly" Accessibility="Public" HasNullStream="false"
                         FileName="Maximus.Base.Library.ManagedWorkflowBase.dll"
-                        QualifiedName="Maximus.Base.Library.ManagedWorkflowBase, Version=1.0.0.1, Culture=neutral, PublicKeyToken=fd5098a6a3259696"
+                        QualifiedName="Maximus.Base.Library.ManagedWorkflowBase, Version=1.0.0.2, Culture=neutral, PublicKeyToken=fd5098a6a3259696"
                         Comment="Base library for managed workflow. Must not be used in SCOM Console extension projects. Must not be referenced with base console extension library." />
     <DeployableAssembly ID="Maximus.Base.Library.Newtonsoft.Json.DeployableAssembly" Accessibility="Public" HasNullStream="false"
                         QualifiedName="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed"

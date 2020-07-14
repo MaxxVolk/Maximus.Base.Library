@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace Maximus.Library.Helpers
 {
@@ -137,7 +138,7 @@ namespace Maximus.Library.Helpers
       if (valueList.Length == 0)
         return string.Empty;
       string Result = "";
-      foreach (var value in valueList)
+      foreach (object value in valueList)
         Result += value.ToString() + separator;
       return Result.Substring(0, Result.Length - separator.Length);
     }
@@ -149,7 +150,7 @@ namespace Maximus.Library.Helpers
       if (valueDictionary.Keys.Count == 0)
         return string.Empty;
       string Result = "";
-      foreach (var pair in valueDictionary)
+      foreach (KeyValuePair<string, object> pair in valueDictionary)
         Result += pair.Key.ToString() + namevalueSeparator + pair.Value.ToString() + itemSeparator;
       return Result.Substring(0, Result.Length - itemSeparator.Length);
     }
@@ -161,13 +162,17 @@ namespace Maximus.Library.Helpers
       if (valueDictionary.Keys.Count == 0)
         return string.Empty;
       string Result = "";
-      foreach (var pair in valueDictionary)
+      foreach (KeyValuePair<string, double> pair in valueDictionary)
         Result += pair.Key.ToString() + namevalueSeparator + pair.Value.ToString(doubleFormat) + itemSeparator;
       return Result.Substring(0, Result.Length - itemSeparator.Length);
     }
 
     public static string EnumElements(IEnumerable<object> inputObjects, string separator = "; ")
     {
+      if (inputObjects == null)
+        return string.Empty;
+      if (!inputObjects.Any())
+        return string.Empty;
       string Result = "";
       foreach (object obj in inputObjects)
         Result += obj.ToString() + separator;

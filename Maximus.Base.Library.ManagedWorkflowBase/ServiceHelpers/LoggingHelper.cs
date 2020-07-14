@@ -154,7 +154,7 @@ namespace Maximus.Library.Helpers
     public void WriteInformation(string message, object Src, params object[] stringFormatArgs)
     {
 #if DEBUG // using only text file logging in DEBUG release
-      logWriteVerbose(message, "", "", 0);
+      WriteVerbose(message, "", "", 0);
 #else
       if (EventLoggingLevel >= EventLoggingLevel.Informational)
         WriteEvent(message, EventLogEntryType.Information, Src, stringFormatArgs);
@@ -163,7 +163,7 @@ namespace Maximus.Library.Helpers
     public void WriteWarning(string message, object Src, params object[] stringFormatArgs)
     {
 #if DEBUG // using only text file logging in DEBUG release
-      logWriteVerbose(message, "", "", 1);
+      WriteVerbose(message, "", "", 1);
 #else
       if (EventLoggingLevel >= EventLoggingLevel.Warning)
         WriteEvent(message, EventLogEntryType.Warning, Src, stringFormatArgs);
@@ -172,7 +172,7 @@ namespace Maximus.Library.Helpers
     public void WriteError(string message, object Src, params object[] stringFormatArgs)
     {
 #if DEBUG // using only text file logging in DEBUG release
-      logWriteVerbose(message, "", "", 2);
+      WriteVerbose(message, "", "", 2);
 #else
       if (EventLoggingLevel >= EventLoggingLevel.Error)
         WriteEvent(message, EventLogEntryType.Error, Src, stringFormatArgs);
