@@ -52,7 +52,7 @@ namespace Maximus.Library.ManagedModuleBase
     {
       // GetConfigurationElement takes care about throwing exception if compulsory element is missing
       string serializedBoolean = GetConfigurationElement(cfgDoc, paramName, Compulsory);
-      if (string.IsNullOrEmpty(serializedBoolean))
+      if (!string.IsNullOrEmpty(serializedBoolean))
         paramValue = ConvertFromSCOMBoolean(serializedBoolean);
       else
         paramValue = defaultValue;
@@ -63,7 +63,7 @@ namespace Maximus.Library.ManagedModuleBase
     {
       // GetConfigurationElement takes care about throwing exception if compulsory element is missing
       string serializedInteger = GetConfigurationElement(cfgDoc, paramName, Compulsory);
-      if (string.IsNullOrEmpty(serializedInteger))
+      if (!string.IsNullOrEmpty(serializedInteger))
         paramValue = int.Parse(serializedInteger);
       else
         paramValue = defaultValue;
@@ -74,7 +74,7 @@ namespace Maximus.Library.ManagedModuleBase
     {
       // GetConfigurationElement takes care about throwing exception if compulsory element is missing
       string serializedDouble = GetConfigurationElement(cfgDoc, paramName, Compulsory);
-      if (string.IsNullOrEmpty(serializedDouble))
+      if (!string.IsNullOrEmpty(serializedDouble))
         paramValue = double.Parse(serializedDouble);
       else
         paramValue = defaultValue;

@@ -75,6 +75,7 @@
     <Compile Include="ServiceHelpers\MachineNameComparer.cs" />
     <Compile Include="ServiceHelpers\PropertyDataExtension.cs" />
     <Compile Include="ServiceHelpers\RegistryHelper.cs" />
+    <Compile Include="ServiceHelpers\ResultWrapper.cs" />
     <Compile Include="ServiceHelpers\ServiceHelper.cs" />
     <Compile Include="ServiceHelpers\StateBookmarks.cs" />
     <Compile Include="ServiceHelpers\WindowsEventLogHelper.cs" />

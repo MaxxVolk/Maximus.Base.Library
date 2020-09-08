@@ -100,7 +100,7 @@
     <Compile Include="Class Instance Editor\SCOMInstanceAdapterComparer.cs" />
     <Compile Include="Class Instance Editor\SCOMInstanceAdapterPropertyComparer.cs" />
     <Compile Include="Class Instance Editor\SCOMInstanceBindingList.cs" />
-    <Compile Include="Class Instance Editor\SCOMSeedClassEditor.cs" />
+    <Compile Include="Class Instance Editor\SCOMClassInstanceEditor.cs" />
     <Compile Include="ConsoleView\BaseConsoleViewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
