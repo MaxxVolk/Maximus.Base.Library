@@ -4,6 +4,8 @@ using System.Xml;
 
 // SCOM SDK
 using Microsoft.EnterpriseManagement.HealthService;
+using Microsoft.EnterpriseManagement.Modules.DataItems.Discovery;
+using Microsoft.EnterpriseManagement.Mom.Modules.DataItems;
 
 namespace Maximus.Library.ManagedModuleBase
 {
@@ -11,16 +13,25 @@ namespace Maximus.Library.ManagedModuleBase
   /// Base class for any simple SCOM managed code workflow. Can implement ProbeAction and WriteAction. 
   /// Limited usage for ConditionDetection. Not to be used to implement DataSource.
   /// </summary>
-  /// <typeparam name="TOutputDataType">Output data type for the an action. <typeparamref name="PropertyBagDataItem"/> is the most
-  /// common output type for a monitoring probe action. Use <typeparamref name="DiscoveryDataItem"/> for a discovery
+  /// <typeparam name="TOutputDataType">Output data type for the an action. <seealso cref="PropertyBagDataItem"/> is the most
+  /// common output type for a monitoring probe action. Use <seealso cref="DiscoveryDataItem"/> for a discovery
   /// probe action.</typeparam>
   public abstract class ModuleBaseSimpleAction<TOutputDataType> : ModuleBaseCore<TOutputDataType> where TOutputDataType : DataItemBase
   {
+    /// <summary>
+    /// Shall never create class instances directly.
+    /// </summary>
+    /// <param name="moduleHost"></param>
+    /// <param name="configuration"></param>
+    /// <param name="previousState"></param>
     public ModuleBaseSimpleAction(ModuleHost<TOutputDataType> moduleHost, XmlReader configuration, byte[] previousState) : base(moduleHost, configuration, previousState)
     {
     }
 
-    public override void Shutdown()
+    /// <summary>
+    /// This method is called by SCOM Agent.
+    /// </summary>
+    public sealed override void Shutdown()
     {
       lock (shutdownLock)
       {
@@ -29,26 +40,43 @@ namespace Maximus.Library.ManagedModuleBase
       }
     }
 
-    public override void Start()
+    /// <summary>
+    /// This method is called by SCOM Agent.
+    /// </summary>
+    public sealed override void Start()
     {
       lock (shutdownLock)
       {
         if (shutdown)
           return;
-        ModuleHost.RequestNextDataItem();
         OnStartInvoke();
+        ModuleHost.RequestNextDataItem();
       }
     }
 
+    /// <summary>
+    /// Override this method to perform module's main function.
+    /// </summary>
+    /// <param name="inputDataItems"></param>
+    /// <returns></returns>
     protected abstract TOutputDataType[] GetOutputData(DataItemBase[] inputDataItems);
 
+    /// <summary>
+    /// This method is called by SCOM Agent.
+    /// </summary>
+    /// <param name="dataItems"></param>
+    /// <param name="logicallyGrouped"></param>
+    /// <param name="acknowledgeCallback"></param>
+    /// <param name="acknowledgedState"></param>
+    /// <param name="completionCallback"></param>
+    /// <param name="completionState"></param>
     [InputStream(0)]
     public void OnNewDataItems(DataItemBase[] dataItems, bool logicallyGrouped, DataItemAcknowledgementCallback acknowledgeCallback, object acknowledgedState, DataItemProcessingCompleteCallback completionCallback, object completionState)
     {
       if (acknowledgeCallback == null && completionCallback != null)
-        throw new ArgumentNullException(nameof(acknowledgeCallback), "Either both or none of completition and acknowledge callbacks must be specified.");
+        throw new ArgumentNullException(nameof(acknowledgeCallback), "Either both or none of completion and acknowledge callbacks must be specified.");
       if (acknowledgeCallback != null && completionCallback == null)
-        throw new ArgumentNullException(nameof(completionCallback), "Either both or none of completition and acknowledge callbacks must be specified.");
+        throw new ArgumentNullException(nameof(completionCallback), "Either both or none of competition and acknowledge callbacks must be specified.");
       bool NeedAcknowledge = acknowledgeCallback != null;
       lock (shutdownLock)
       {

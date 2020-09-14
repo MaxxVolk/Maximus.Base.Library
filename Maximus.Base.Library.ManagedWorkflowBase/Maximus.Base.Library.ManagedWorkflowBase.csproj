@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Maximus.Base.Library.ManagedWorkflowBase.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Maximus.Base.Library.ManagedWorkflowBase.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -86,6 +89,7 @@
     <Compile Include="WellKnownIDs\SCOM.Windows.ID.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Maximus.Base.Library.ManagedWorkflowBase.ruleset" />
     <None Include="Maximus.snk" />
     <None Include="packages.config" />
   </ItemGroup>

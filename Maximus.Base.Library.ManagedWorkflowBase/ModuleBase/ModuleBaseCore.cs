@@ -20,16 +20,28 @@ namespace Maximus.Library.ManagedModuleBase
     protected bool shutdown;
     private bool? internal_IsStateless = null;
 
+    /// <summary>
+    /// Shall never create class instances directly.
+    /// </summary>
+    /// <param name="moduleHost"></param>
+    /// <param name="configuration"></param>
+    /// <param name="previousState"></param>
     public ModuleBaseCore(ModuleHost<TOutputDataType> moduleHost, XmlReader configuration, byte[] previousState) : base(moduleHost)
     {
       if (configuration == null)
         throw new ArgumentNullException(nameof(configuration));
       shutdownLock = new object();
       PreInitialize(moduleHost, configuration, previousState);
-      LoadConfiguration(configuration);
+      XmlDocument xmlDocument = new XmlDocument();
+      if (configuration != null)
+        xmlDocument.Load(configuration);
+      LoadConfiguration(xmlDocument);
       LoadPreviousState(previousState);
     }
 
+    /// <summary>
+    /// Returns value of the <seealso cref="StatelessModuleAttribute"/> attribute, or <c>false</c> if no attribute. 
+    /// </summary>
     protected bool IsStateless
     {
       get
@@ -44,9 +56,18 @@ namespace Maximus.Library.ManagedModuleBase
         return internal_IsStateless == true;
       }
     }
-      
+
+    /// <summary>
+    /// A property to hold module state after loading at startup or before calling <see cref="SavePreviousState()"/> method.
+    /// <see cref="ModuleState"/> is null if: no saved state provided, module version has changes, target class instance migrated to another agent.
+    /// </summary>
     protected object ModuleState { get; set; }
 
+    /// <summary>
+    /// Automatically called in module's constructor at startup. Tries to load previous module state if provided.
+    /// If successfully loaded, previous module state is held in the <see cref="ModuleState"/> property.
+    /// </summary>
+    /// <param name="previousState"></param>
     protected virtual void LoadPreviousState(byte[] previousState)
     {
       if (previousState != null)
@@ -77,9 +98,9 @@ namespace Maximus.Library.ManagedModuleBase
     }
 
     /// <summary>
-    /// Tries to serialize the current state object held in <code>ModuleState</code> property and save it using SCOM Agent API.
+    /// Tries to serialize the current state object held in <see cref="ModuleState"/> property and save it using SCOM Agent API.
     /// </summary>
-    /// <returns>Returns true if success, false otherwise.</returns>
+    /// <returns>Returns <c>true</c> if success, false otherwise.</returns>
     protected bool SavePreviousState()
     {
       if (ModuleState == null)
@@ -109,44 +130,66 @@ namespace Maximus.Library.ManagedModuleBase
       }
     }
 
+    /// <summary>
+    /// Assign <paramref name="bookmark"/> to <see cref="ModuleState"/> property and save it.
+    /// </summary>
+    /// <param name="bookmark"></param>
+    /// <returns><c>true</c> if saved successfully.</returns>
     protected bool SavePreviousState(long bookmark)
     {
       ModuleState = new StateBookmarks { longBookmark = bookmark };
       return SavePreviousState();
     }
 
+    /// <summary>
+    /// Assign <paramref name="bookmark"/> to <see cref="ModuleState"/> property and save it.
+    /// </summary>
+    /// <param name="bookmark"></param>
+    /// <returns><c>true</c> if saved successfully.</returns>
     protected bool SavePreviousState(DateTime bookmark)
     {
       ModuleState = new StateBookmarks { timeBookmark = bookmark };
       return SavePreviousState();
     }
 
+    /// <summary>
+    /// Assign <paramref name="bookmark"/> to <see cref="ModuleState"/> property and save it.
+    /// </summary>
+    /// <param name="bookmark"></param>
+    /// <returns><c>true</c> if saved successfully.</returns>
     protected bool SavePreviousState(double bookmark)
     {
       ModuleState = new StateBookmarks { doubleBookmark = bookmark };
       return SavePreviousState();
     }
 
+    /// <summary>
+    /// Assign <paramref name="state"/> to <see cref="ModuleState"/> property and save it.
+    /// </summary>
+    /// <param name="state"></param>
+    /// <returns><c>true</c> if saved successfully.</returns>
     protected bool SavePreviousState(object state)
     {
       ModuleState = state;
       return SavePreviousState();
     }
 
-    protected abstract void LoadConfiguration(XmlReader configuration);
+    protected abstract void LoadConfiguration(XmlDocument cfgDoc);
 
+    /// <summary>
+    /// Event is triggered when SCOM Agent starts the module for the first time.
+    /// </summary>
     protected event EventHandler OnStart;
 
+    /// <summary>
+    /// Event is triggered when SCOM Agent do graceful shutdown of the module.
+    /// This happens when: <list type="bullet"><item>dd</item></list>
+    /// </summary>
     protected event EventHandler OnShutdown;
 
-    protected virtual void OnStartInvoke()
-    {
-      OnStart?.Invoke(this, null);
-    }
-    protected virtual void OnShutdownInvoke()
-    {
-      OnShutdown?.Invoke(this, null);
-    }
+    protected void OnStartInvoke() => OnStart?.Invoke(this, null);
+
+    protected void OnShutdownInvoke() => OnShutdown?.Invoke(this, null);
 
     /// <summary>
     /// Inherited classes may override this method to make an earlier, before the most base constructor, initialization. 
