@@ -30,5 +30,7 @@ namespace Maximus.Library.DataItemCollection
       XmlSerializer xmlFormat = new XmlSerializer(typeof(T));
       xmlFormat.Serialize(writer, Data);
     }
+
+    protected abstract string GetDataItemTypeName();
   }
 }
