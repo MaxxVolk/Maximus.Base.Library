@@ -50,13 +50,15 @@ namespace Maximus.Library.Helpers
       try
       {
         string pathName = ParseValuePath(fullPath, out string valueName);
-        RegistryKey valueKey = GetRegistryKey(computerName, pathName);
-        if (valueKey == null)
-          throw new IOException(pathName + " registry path not found.");
-        object returnValue = valueKey.GetValue(valueName);
-        if (returnValue == null)
-          throw new IOException(valueName + " registry value not found.");
-        return returnValue;
+        using (RegistryKey valueKey = GetRegistryKey(computerName, pathName))
+        {
+          if (valueKey == null)
+            throw new IOException(pathName + " registry path not found.");
+          object returnValue = valueKey.GetValue(valueName);
+          if (returnValue == null)
+            throw new IOException(valueName + " registry value not found.");
+          return returnValue;
+        }
       }
       catch (IOException)
       {
@@ -88,6 +90,13 @@ namespace Maximus.Library.Helpers
       }
     }
 
+    /// <summary>
+    /// Creates a new registry key. If the key exists, then returns it.
+    /// </summary>
+    /// <param name="computerName">Remote computer name, or '.' for local computer.</param>
+    /// <param name="keyPath">Full path to the key.</param>
+    /// <param name="writable"><see langword="true"/> is existing key should be opened for write. Not applicable for newly created key.</param>
+    /// <returns></returns>
     public static RegistryKey CreateRegistryKey(string computerName, string keyPath, bool writable = false)
     {
       RegistryKey draftResult = GetRegistryKey(computerName, keyPath, writable);

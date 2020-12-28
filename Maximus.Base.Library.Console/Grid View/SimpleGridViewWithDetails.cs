@@ -101,7 +101,7 @@ namespace Maximus.Library.GridView
 
       AddColumn(new GridControlTextColumn(), typeof(string), "Name", "DisplayName", false, true);
 
-      foreach (ManagementPackProperty property in ManagementGroup.EntityTypes.GetClass(new Guid("ea99500d-8d52-fc52-b5a5-10dcd1e9d2bd")).GetProperties()) // Microsoft.Windows.Computer)
+      foreach (ManagementPackProperty property in GetViewClass().GetProperties()) // Microsoft.Windows.Computer)
       {
         Type type = property.SystemType;
         Type contentType = null;
@@ -191,14 +191,17 @@ namespace Maximus.Library.GridView
     #endregion
 
     #region IParentView Implementation
-    public Type ChildViewType => GetDetailedVewControlType();
+    /// <summary>
+    /// Implements IParentView.ChildViewType. Returns component type, which implements detail view.
+    /// </summary>
+    public Type ChildViewType => GetDetailedViewControlType();
 
     /// <summary>
     /// Override this method to return type of a control, which will be attached to this Grid View as a detail plane.
     /// The detail view control should be inherited from <seealso cref="CachedDetailView{PartialMonitoringObject}"/>.
     /// </summary>
     /// <returns></returns>
-    protected abstract Type GetDetailedVewControlType();
+    protected abstract Type GetDetailedViewControlType();
 
     /// <summary>
     /// This method is called from <seealso cref="CachedDetailView{PartialMonitoringObject}"/> ParentSelectionChanged method, where the returned object is casted as T.
@@ -219,6 +222,10 @@ namespace Maximus.Library.GridView
       }
     }
 
+    /// <summary>
+    /// Implements ChildViewType.GetSelection(). Returns a collection of currently selected items.
+    /// </summary>
+    /// <returns></returns>
     public ICollection GetSelection()
     {
       if (Grid.SelectedCells.Count == 0)

@@ -110,13 +110,13 @@
     </Compile>
     <Compile Include="Data Item\SerializationData.cs" />
     <Compile Include="Data Item\SerializationDataContainerDataItemBase.cs" />
-    <Compile Include="Grid Detail View\SimpleGridViewDetailsPlane.cs">
+    <Compile Include="Grid View\SimpleGridViewDetailsPlane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Grid Detail View\SimpleGridViewDetailsPlane.Designer.cs">
+    <Compile Include="Grid View\SimpleGridViewDetailsPlane.Designer.cs">
       <DependentUpon>SimpleGridViewDetailsPlane.cs</DependentUpon>
     </Compile>
-    <Compile Include="Grid Detail View\SimpleGridViewWithDetails.cs">
+    <Compile Include="Grid View\SimpleGridViewWithDetails.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,7 +132,7 @@
     <EmbeddedResource Include="Console View\BaseConsoleViewControl.resx">
       <DependentUpon>BaseConsoleViewControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Grid Detail View\SimpleGridViewDetailsPlane.resx">
+    <EmbeddedResource Include="Grid View\SimpleGridViewDetailsPlane.resx">
       <DependentUpon>SimpleGridViewDetailsPlane.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

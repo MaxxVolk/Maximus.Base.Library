@@ -253,7 +253,7 @@ namespace Maximus.Library.SCOM.Editors
         hasData = true;
         CreatableEnterpriseManagementObject newSeedInstance = new CreatableEnterpriseManagementObject(myMG, mySeedClass);
         CreatableEnterpriseManagementRelationshipObject newSomethingShouldManageInstance = null;
-        foreach (var classProperty in mySeedClass.PropertyCollection)
+        foreach (ManagementPackProperty classProperty in mySeedClass.GetProperties(BaseClassTraversalDepth.Recursive))
         {
           try
           {
@@ -265,12 +265,6 @@ namespace Maximus.Library.SCOM.Editors
               throw;
           }
         }
-        // also try to set DisplayName if available
-        try
-        {
-          newSeedInstance[SystemId.EntityClassProperties.DisplayNamePropertyId].Value = newObject.GetClassInstanceProperty(SystemId.EntityClassProperties.DisplayNamePropertyId);
-        }
-        catch (KeyNotFoundException) { } // ignore
 
         // Unhosted, with specific action point
         if (!mySeedClass.Hosted && myActionPointClass != null && newObject.ActionPoint != null)
@@ -297,7 +291,7 @@ namespace Maximus.Library.SCOM.Editors
           ManagementPackClass hostClass = myActionPointClass;
           while (hostClass != null)
           {
-            foreach (ManagementPackProperty hostProperty in hostClass.PropertyCollection)
+            foreach (ManagementPackProperty hostProperty in hostClass.GetProperties(BaseClassTraversalDepth.None))
               if (hostProperty.Key)
                 newSeedInstance[hostProperty].Value = newObject.ActionPoint[hostProperty].Value;
             hostClass = hostClass.FindHostClass();
@@ -398,7 +392,7 @@ namespace Maximus.Library.SCOM.Editors
       // test if all key fields have values
       bool AllKeys = true;
       bool AllRequired = true;
-      foreach (var classProperty in mySeedClass.PropertyCollection)
+      foreach (ManagementPackProperty classProperty in mySeedClass.GetProperties(BaseClassTraversalDepth.Recursive))
       {
         if (classProperty.Key)
           if (testRecord.GetClassInstanceProperty(classProperty.Id) == null)

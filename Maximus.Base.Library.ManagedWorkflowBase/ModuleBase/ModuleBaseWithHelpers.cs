@@ -97,7 +97,7 @@ namespace Maximus.Library.ManagedModuleBase
       // GetConfigurationElement takes care about throwing exception if compulsory element is missing
       string serializedBoolean = GetConfigurationElement(cfgDoc, paramName, Compulsory);
       if (!string.IsNullOrEmpty(serializedBoolean))
-        paramValue = ConvertFromSCOMBoolean(serializedBoolean);
+        paramValue = ConvertSCOMBoolean(serializedBoolean);
       else
         paramValue = defaultValue;
       return;
@@ -178,13 +178,12 @@ namespace Maximus.Library.ManagedModuleBase
     /// </summary>
     /// <param name="BoolString"></param>
     /// <returns>Deserialized value.</returns>
-    public static bool ConvertFromSCOMBoolean(string BoolString)
+    public static bool ConvertSCOMBoolean(string BoolString)
     {
-      bool _Result;
-      _Result = false;
       if (!string.IsNullOrEmpty(BoolString))
-      { _Result = string.Equals(BoolString, "true", StringComparison.OrdinalIgnoreCase) | string.Equals(BoolString, "1", StringComparison.OrdinalIgnoreCase); }
-      return _Result;
+        return string.Equals(BoolString, "true", StringComparison.OrdinalIgnoreCase) | string.Equals(BoolString, "1", StringComparison.OrdinalIgnoreCase);
+      else
+        throw new ArgumentNullException(nameof(BoolString));
     }
 
     /// <summary>
@@ -266,7 +265,7 @@ namespace Maximus.Library.ManagedModuleBase
 
       Dictionary<string, object> bagItem = new Dictionary<string, object>();
       for (int j = 0; j < pairs.Length / 2; j++)
-        bagItem.Add(pairs[j].ToString(), pairs[j + 1]);
+        bagItem.Add(pairs[j * 2].ToString(), pairs[j * 2 + 1]);
 
       return new PropertyBagDataItem(null, new Dictionary<string, Dictionary<string, object>>
       {

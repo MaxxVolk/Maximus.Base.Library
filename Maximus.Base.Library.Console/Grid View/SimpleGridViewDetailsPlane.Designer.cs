@@ -1,4 +1,4 @@
-﻿namespace Maximus.Base.Library.Console.Grid_Detail_View
+﻿namespace Maximus.Library.GridView
 {
   partial class SimpleGridViewDetailsPlane
   {
