@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Drawing;
 using System.Globalization;
@@ -11,6 +12,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Forms;
 
+using Maximus.Base.Library.Console;
 using Maximus.Library.SCOMId;
 
 using Microsoft.EnterpriseManagement.Common;
@@ -28,6 +30,7 @@ namespace Maximus.Library.GridView
   /// <summary>
   /// Base class to create object Grid View with details plane. No support for roles/hosted child object.
   /// </summary>
+  [TypeDescriptionProvider(typeof(AbstractControlDescriptionProvider<SimpleGridViewWithDetails, GridViewBase<InstanceState, StateQuery>>))]
   public abstract class SimpleGridViewWithDetails : GridViewBase<InstanceState, StateQuery>, IParentView
   {
     private readonly Dictionary<HealthState, Image> HealthStateImages;
@@ -74,7 +77,7 @@ namespace Maximus.Library.GridView
       GridControlImageTextColumn stateColumn = new GridControlImageTextColumn();
       stateColumn.CellContentsRequested += new EventHandler<GridControlImageTextColumn.ImageTextEventArgs>(StateCellContentsRequested);
       string str = $"{propertyTranslator.TargetType.Name}-*-{propertyTranslator.TargetType.Id}-*-Health";
-      AddColumn(stateColumn, ConsoleResources.GetString("State", CurrentCulture), new Field("Health", typeof(int), str, Field.SortInfos.Sortable | Field.SortInfos.Sort, 0), false);
+      AddColumn(stateColumn, ConsoleResources.GetString("State", CurrentCulture) ?? "State", new Field("Health", typeof(int), str, Field.SortInfos.Sortable | Field.SortInfos.Sort, 0), false);
 
       // Maintenance Mode
       DataGridViewColumn MaintenanceModeColumn = AddColumn(new GridControlImageTextColumn(
@@ -158,6 +161,7 @@ namespace Maximus.Library.GridView
     {
       if (contextMenu != null)
       {
+        AddUserContextMenu(contextMenu);
         // these methods, OnCopyCommand and UpdateCopyCommandStatus, are defined in GridViewBase
         contextMenu.AddContextMenuItem(StandardCommands.Copy, OnCopyCommand, UpdateCopyCommandStatus);
         contextMenu.AddContextMenuSeparator();
@@ -210,7 +214,7 @@ namespace Maximus.Library.GridView
     {
       get
       {
-        if (Grid == null || Grid.SelectedRows == null || Grid.SelectedRows[0] == null)
+        if (Grid == null || Grid.SelectedRows == null || Grid.Rows == null || Grid.Rows.Count == 0 || Grid.SelectedRows[0] == null)
           return null;
 
         if (Grid.SelectedRows[0].Cells[0].Tag is GridDataItem tag)

@@ -4,12 +4,15 @@ using System.Windows.Forms;
 using Microsoft.EnterpriseManagement.Mom.Internal.UI;
 using Microsoft.EnterpriseManagement.Monitoring;
 using Microsoft.EnterpriseManagement.Mom.Internal.UI.Common;
+using System.ComponentModel;
+using Maximus.Base.Library.Console;
 
 namespace Maximus.Library.GridView
 {
   /// <summary>
   /// Base class to implement details plane for <seealso cref="SimpleGridViewWithDetails"/>
   /// </summary>
+  [TypeDescriptionProvider(typeof(AbstractControlDescriptionProvider<SimpleGridViewDetailsPlane, CachedDetailView<PartialMonitoringObject>>))]
   public abstract partial class SimpleGridViewDetailsPlane : CachedDetailView<PartialMonitoringObject>, IDisposable
   {
     public SimpleGridViewDetailsPlane() : base()
@@ -81,6 +84,6 @@ namespace Maximus.Library.GridView
     /// <summary>
     /// Status message shown when no item in the parent view selected. Override to change.
     /// </summary>
-    protected string NoItemSelectedMessage => "Select an Item to show Details Panel.";
+    protected virtual string NoItemSelectedMessage => "Select an Item to show Details Panel."; 
   }
 }

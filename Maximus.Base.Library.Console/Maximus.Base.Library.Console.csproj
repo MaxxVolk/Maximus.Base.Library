@@ -92,6 +92,7 @@
     <Compile Include="..\Maximus.Base.Library.ManagedWorkflowBase\WellKnownIDs\SCOM.Windows.ID.cs">
       <Link>WellKnownIDs\SCOM.Windows.ID.cs</Link>
     </Compile>
+    <Compile Include="AbstractControlDescriptionProvider.cs" />
     <Compile Include="Class Instance Editor\BindableMonitoringObject.cs" />
     <Compile Include="Class Instance Editor\ObjectChangedEventArgs.cs" />
     <Compile Include="Class Instance Editor\SCOMClassInstanceAdapter.cs" />

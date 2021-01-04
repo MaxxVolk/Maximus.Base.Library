@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.1.0")] // to reference the library
-[assembly: AssemblyFileVersion("1.0.1.10")] // increase when patch
+[assembly: AssemblyFileVersion("1.0.1.15")] // increase when patch
 
