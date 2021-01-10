@@ -15,7 +15,7 @@ namespace Maximus.Library.Helpers
   public class LoggingHelper
   {
     // internal fields
-    private string _eventSourceName = "";
+    private string _eventSourceName = "Health Service Script";
     private Dictionary<Type, int> _eventTypeIDs = new Dictionary<Type, int>();
     private object _eventTypeIDs_lock = new object();
     private const string SoftwareKeyName = "Maximus";
@@ -35,8 +35,15 @@ namespace Maximus.Library.Helpers
       {
         if (_eventSourceName != value)
         {
-          _eventSourceName = value;
-          RegisterEventSource(value);
+          try
+          {
+            _eventSourceName = value;
+            RegisterEventSource(value);
+          }
+          catch
+          {
+            _eventSourceName = "Health Service Script"; // use pre-existing source.
+          }
         }
       }
     }
