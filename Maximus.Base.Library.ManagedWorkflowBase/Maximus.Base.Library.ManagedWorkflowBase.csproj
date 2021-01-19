@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataItem\DataItemRawXML.cs" />
+    <Compile Include="DataItem\PropertyBagObject.cs" />
     <Compile Include="ModuleBase\ModuleBaseException.cs" />
     <Compile Include="ModuleBase\ModuleBaseTimedAsyncDataSource.cs" />
     <Compile Include="ModuleBase\ModuleBaseTimedDataSource.cs" />
