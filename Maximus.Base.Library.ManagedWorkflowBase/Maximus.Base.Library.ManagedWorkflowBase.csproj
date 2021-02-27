@@ -76,11 +76,13 @@
     <Compile Include="DataItem\SerializationDataContainerDataItemBase.cs" />
     <Compile Include="ServiceHelpers\AssertationHelper.cs" />
     <Compile Include="ServiceHelpers\ComputerHelper.cs" />
+    <Compile Include="ServiceHelpers\CredentialsManager.cs" />
     <Compile Include="ServiceHelpers\FormattingHelper.cs" />
     <Compile Include="ServiceHelpers\LoggingHelper.cs" />
     <Compile Include="ServiceHelpers\MachineNameComparer.cs" />
     <Compile Include="ServiceHelpers\PropertyDataExtension.cs" />
     <Compile Include="ServiceHelpers\RegistryHelper.cs" />
+    <Compile Include="ServiceHelpers\SimpleWebApiClient.cs" />
     <Compile Include="ServiceHelpers\ResultWrapper.cs" />
     <Compile Include="ServiceHelpers\ServiceHelper.cs" />
     <Compile Include="ServiceHelpers\StateBookmarks.cs" />
