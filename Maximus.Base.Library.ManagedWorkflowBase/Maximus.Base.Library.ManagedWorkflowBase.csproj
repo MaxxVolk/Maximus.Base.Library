@@ -41,6 +41,20 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>Maximus.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release-Standalone|AnyCPU'">
+    <OutputPath>bin\Release-Standalone\</OutputPath>
+    <DefineConstants>TRACE;STANDALONE</DefineConstants>
+    <DocumentationFile>bin\Release\Maximus.Standalone.Library.ManagedWorkflowBase.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <AssemblyName>Maximus.Standalone.Library.ManagedWorkflowBase</AssemblyName>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.EnterpriseManagement.HealthService">
       <HintPath>..\..\..\..\SDKs\SCOM 2012\Microsoft.EnterpriseManagement.HealthService.dll</HintPath>

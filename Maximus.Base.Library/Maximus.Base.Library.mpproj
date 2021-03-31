@@ -29,6 +29,16 @@
     <AssemblyOriginatorKeyFile>C:\Projects\SCOMAuthoring\Maximus.Base.Library\.key\Maximus.snk</AssemblyOriginatorKeyFile>
     <GenerateSealed>True</GenerateSealed>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release-Standalone' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DelaySigning>False</DelaySigning>
+    <Company>Maximus</Company>
+    <Copyright>Copyright (c) Maximus. All rights reserved.</Copyright>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>C:\Projects\SCOMAuthoring\Maximus.Base.Library\.key\Maximus.snk</AssemblyOriginatorKeyFile>
+    <GenerateSealed>True</GenerateSealed>
+    <OutputPath>bin\Release-Standalone\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <ManagementPackReference Include="Microsoft.SystemCenter.Library">
       <Alias>SC</Alias>

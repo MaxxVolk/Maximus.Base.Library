@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1169
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maximus.Base.Library.ManagedWorkflowBase", "Maximus.Base.Library.ManagedWorkflowBase\Maximus.Base.Library.ManagedWorkflowBase.csproj", "{5E0C0BA4-F155-493E-95BC-CC00DD323D8C}"
 EndProject
@@ -15,6 +15,8 @@ Global
 		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
+		Release-Standalone|Any CPU = Release-Standalone|Any CPU
+		Release-Standalone|x86 = Release-Standalone|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5E0C0BA4-F155-493E-95BC-CC00DD323D8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{5E0C0BA4-F155-493E-95BC-CC00DD323D8C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5E0C0BA4-F155-493E-95BC-CC00DD323D8C}.Release|x86.ActiveCfg = Release|Any CPU
 		{5E0C0BA4-F155-493E-95BC-CC00DD323D8C}.Release|x86.Build.0 = Release|Any CPU
+		{5E0C0BA4-F155-493E-95BC-CC00DD323D8C}.Release-Standalone|Any CPU.ActiveCfg = Release-Standalone|Any CPU
+		{5E0C0BA4-F155-493E-95BC-CC00DD323D8C}.Release-Standalone|Any CPU.Build.0 = Release-Standalone|Any CPU
+		{5E0C0BA4-F155-493E-95BC-CC00DD323D8C}.Release-Standalone|x86.ActiveCfg = Release-Standalone|Any CPU
+		{5E0C0BA4-F155-493E-95BC-CC00DD323D8C}.Release-Standalone|x86.Build.0 = Release-Standalone|Any CPU
 		{C6043D4C-0284-48B4-9574-613A827FC45A}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{C6043D4C-0284-48B4-9574-613A827FC45A}.Debug|Any CPU.Build.0 = Debug|x86
 		{C6043D4C-0284-48B4-9574-613A827FC45A}.Debug|x86.ActiveCfg = Debug|x86
@@ -33,6 +39,10 @@ Global
 		{C6043D4C-0284-48B4-9574-613A827FC45A}.Release|Any CPU.Build.0 = Release|x86
 		{C6043D4C-0284-48B4-9574-613A827FC45A}.Release|x86.ActiveCfg = Release|x86
 		{C6043D4C-0284-48B4-9574-613A827FC45A}.Release|x86.Build.0 = Release|x86
+		{C6043D4C-0284-48B4-9574-613A827FC45A}.Release-Standalone|Any CPU.ActiveCfg = Release-Standalone|x86
+		{C6043D4C-0284-48B4-9574-613A827FC45A}.Release-Standalone|Any CPU.Build.0 = Release-Standalone|x86
+		{C6043D4C-0284-48B4-9574-613A827FC45A}.Release-Standalone|x86.ActiveCfg = Release-Standalone|x86
+		{C6043D4C-0284-48B4-9574-613A827FC45A}.Release-Standalone|x86.Build.0 = Release-Standalone|x86
 		{FFD0C0AC-B3F3-48EF-AEE8-8A55354C311D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FFD0C0AC-B3F3-48EF-AEE8-8A55354C311D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFD0C0AC-B3F3-48EF-AEE8-8A55354C311D}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -41,6 +51,10 @@ Global
 		{FFD0C0AC-B3F3-48EF-AEE8-8A55354C311D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FFD0C0AC-B3F3-48EF-AEE8-8A55354C311D}.Release|x86.ActiveCfg = Release|Any CPU
 		{FFD0C0AC-B3F3-48EF-AEE8-8A55354C311D}.Release|x86.Build.0 = Release|Any CPU
+		{FFD0C0AC-B3F3-48EF-AEE8-8A55354C311D}.Release-Standalone|Any CPU.ActiveCfg = Release-Standalone|Any CPU
+		{FFD0C0AC-B3F3-48EF-AEE8-8A55354C311D}.Release-Standalone|Any CPU.Build.0 = Release-Standalone|Any CPU
+		{FFD0C0AC-B3F3-48EF-AEE8-8A55354C311D}.Release-Standalone|x86.ActiveCfg = Release-Standalone|Any CPU
+		{FFD0C0AC-B3F3-48EF-AEE8-8A55354C311D}.Release-Standalone|x86.Build.0 = Release-Standalone|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
