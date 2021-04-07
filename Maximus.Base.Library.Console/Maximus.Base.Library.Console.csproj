@@ -119,6 +119,7 @@
     <Compile Include="Console View\BaseConsoleViewControl.designer.cs">
       <DependentUpon>BaseConsoleViewControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data Item\PropertyBagXMLHelper.cs" />
     <Compile Include="Data Item\SerializationData.cs" />
     <Compile Include="Data Item\SerializationDataContainerDataItemBase.cs" />
     <Compile Include="Grid View\SimpleGridViewDetailsPlane.cs">
