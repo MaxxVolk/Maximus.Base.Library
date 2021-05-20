@@ -370,14 +370,16 @@ namespace Maximus.Library.GridView
 
     private void OnShowInstanceProperties(object sender, CommandEventArgs e)
     {
-      InstancePropertiesDialog propertiesDialog = new InstancePropertiesDialog();
-      Site.Container.Add(propertiesDialog);
-      if (SelectedItem is PartialMonitoringObject pmo)
+      using (InstancePropertiesDialog propertiesDialog = new InstancePropertiesDialog())
       {
-        var mo = ManagementGroup.EntityObjects.GetObject<MonitoringObject>(pmo.Id, ObjectQueryOptions.Default);
-        propertiesDialog.Entity = mo;
-        propertiesDialog.Type = mo.GetMostDerivedClasses().FirstOrDefault() ?? ManagementGroup.EntityTypes.GetClass(SystemId.EntityClassId);
-        propertiesDialog.ShowDialog();
+        Site.Container.Add(propertiesDialog);
+        if (SelectedItem is PartialMonitoringObject pmo)
+        {
+          var mo = ManagementGroup.EntityObjects.GetObject<MonitoringObject>(pmo.Id, ObjectQueryOptions.Default);
+          propertiesDialog.Entity = mo;
+          propertiesDialog.Type = mo.GetMostDerivedClasses().FirstOrDefault() ?? ManagementGroup.EntityTypes.GetClass(SystemId.EntityClassId);
+          propertiesDialog.ShowDialog();
+        }
       }
     }
     #endregion

@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 namespace Maximus.Library.DataItemCollection
 {
   /// <summary>
-  /// This is a copy of <code>Maximus.Library.DataItemCollection.SerializationDataContainerDataItemBase<T></code> class from 
+  /// This is a copy of <code>Maximus.Library.DataItemCollection.SerializationDataContainerDataItemBase</code> class from 
   /// Maximus.Base.Library.ManagedWorkflowBase library, but without reference to Microsoft.EnterpriseManagement.HealthService
   /// which is not available in console assemblies.
   /// </summary>

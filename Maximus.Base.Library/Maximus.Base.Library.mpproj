@@ -5,7 +5,7 @@
     <RootNamespace>Maximus.Base.Library</RootNamespace>
     <Name>Maximus.Base.Library</Name>
     <ManagementPackName>Maximus.Base.Library</ManagementPackName>
-    <Version>1.0.0.0</Version>
+    <Version>1.0.0.28</Version>
     <MpFrameworkVersion>v7.0.2</MpFrameworkVersion>
     <MpFrameworkProfile>OM</MpFrameworkProfile>
     <ProductVersion>1.1.0.0</ProductVersion>
