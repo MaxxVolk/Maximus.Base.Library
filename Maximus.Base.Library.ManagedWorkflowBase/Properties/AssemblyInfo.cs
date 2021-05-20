@@ -44,5 +44,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("1.0.2.0")]
 #else
 [assembly: AssemblyVersion("1.0.1.0")] // to reference the library
-[assembly: AssemblyFileVersion("1.0.1.4")]
+[assembly: AssemblyFileVersion("1.0.1.5")]
 #endif
