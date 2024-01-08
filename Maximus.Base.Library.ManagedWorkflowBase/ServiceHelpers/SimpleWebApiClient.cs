@@ -99,6 +99,11 @@ namespace Maximus.Library.WebApi
     /// </summary>
     public bool? Expect100Continue { get; set; } = null;
 
+    /// <summary>
+    /// Set <see cref="WebRequest.Timeout"/> property. If not set, then use default timeout.
+    /// </summary>
+    public int? Timeout { get; set; } = null;
+
     protected HttpWebRequest PrepareHttpWebRequest(string subPath, string query = null, string method = null, NameValueCollection extraHeaders = null, string body = null)
     {
       BaseAddress.Path = subPath;
@@ -106,6 +111,8 @@ namespace Maximus.Library.WebApi
       HttpWebRequest Request = WebRequest.CreateHttp(BaseAddress.Uri);
       if (Expect100Continue != null)
         Request.ServicePoint.Expect100Continue = Expect100Continue ?? false;
+      if (Timeout != null)
+        Request.Timeout = Timeout.Value;
       if (!string.IsNullOrWhiteSpace(method))
         Request.Method = method;
       else
